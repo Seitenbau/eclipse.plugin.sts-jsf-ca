@@ -18,7 +18,7 @@ define the base package to be scanned and a java regex for the class name.
 
 eg:  "com.me.project.model" and  ".*Model"
 
-# License
+## License
 
 Apache License, Version 2.0 (current)
 http://www.apache.org/licenses/LICENSE-2.0
