@@ -23,22 +23,26 @@ public class SpringBeansSymbolsProcessor {
 
 	private static final String SPRING_INTERNAL_ANNOTATION_PACKAGE = "org.springframework.context.annotation.internal";
 
-	final IJavaProject javaProject;
+	private final IJavaProject javaProject;
+
+	private final IBeansProject springProject;
+
+	private final List<ISymbol> symbols = new Vector<ISymbol>();
+
+	public static SpringBeansSymbolsProcessor create(IJavaProject project){
+		return new SpringBeansSymbolsProcessor(project);
+	}
 	
-	final IBeansProject springProject;
-	
-	final List<ISymbol> symbols = new Vector<ISymbol>();
-	
-	public SpringBeansSymbolsProcessor(IJavaProject project) {
+	private SpringBeansSymbolsProcessor(IJavaProject project) {
 		this.javaProject = project;
-		this.springProject = BeansCorePlugin.getModel().getProject(project.getProject());
+		this.springProject = getSpringProject(project);
 		process();
 	}
-	
-	public List<ISymbol> getSymbols(){
+
+	public List<ISymbol> getSymbols() {
 		return symbols;
 	}
-	
+
 	void process() {
 		Set<IBeansConfig> configs = new HashSet<IBeansConfig>();
 		configs.addAll(springProject.getConfigs());
@@ -50,7 +54,7 @@ public class SpringBeansSymbolsProcessor {
 			processSpringComponents(bc.getComponents());
 		}
 	}
-	
+
 	void processSpringComponents(Set<IBeansComponent> components) {
 		if (isNotEmpty(components)) {
 			for (IBeansComponent component : components) {
@@ -62,13 +66,18 @@ public class SpringBeansSymbolsProcessor {
 						IJavaTypeDescriptor2 javaTypeDescriptor = createJavaTypeDescriptor();
 						IType beanType = findType(springBean.getClassName());
 						javaTypeDescriptor.setType(beanType);
-						springBeanSymbol.setJavaTypeDescriptor(javaTypeDescriptor);
+						springBeanSymbol
+								.setJavaTypeDescriptor(javaTypeDescriptor);
 						symbols.add(springBeanSymbol);
 					}
 				}
 				processSpringComponents(component.getComponents());
 			}
 		}
+	}
+
+	private IBeansProject getSpringProject(IJavaProject project) {
+		return BeansCorePlugin.getModel().getProject(project.getProject());
 	}
 
 	private boolean isNotEmpty(Set<IBeansComponent> components) {
@@ -94,8 +103,9 @@ public class SpringBeansSymbolsProcessor {
 	}
 
 	private boolean isSpringInternalBean(IBean bean) {
-		return 	bean.getElementName() == null || 
-				bean.getElementName().startsWith(SPRING_INTERNAL_ANNOTATION_PACKAGE);
+		return bean.getElementName() == null
+				|| bean.getElementName().startsWith(
+						SPRING_INTERNAL_ANNOTATION_PACKAGE);
 	}
-	
+
 }

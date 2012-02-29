@@ -14,8 +14,9 @@ import org.eclipse.jst.jsf.context.symbol.source.ISymbolSourceProvider;
 import org.eclipse.jst.jsf.designtime.symbols.FileContextUtil;
 import org.eclipse.jst.jsf.designtime.symbols.SymbolUtil;
 
-public class SpringBeanProviderFactory extends AbstractSymbolSourceProviderFactory implements ISymbolSourceProvider {
-	
+public class SpringBeanProviderFactory extends
+		AbstractSymbolSourceProviderFactory implements ISymbolSourceProvider {
+
 	/**
 	 * @see org.eclipse.jst.jsf.context.symbol.source.ISymbolSourceProvider#getSymbols(org.eclipse.core.runtime.IAdaptable,int)
 	 */
@@ -23,16 +24,15 @@ public class SpringBeanProviderFactory extends AbstractSymbolSourceProviderFacto
 	public ISymbol[] getSymbols(IAdaptable context, int symbolScopeMask) {
 		final List<ISymbol> symbols = new ArrayList<ISymbol>();
 		IJavaProject javaProject = JavaCore.create(this.getProject());
-		
-		SpringBeansSymbolsProcessor springProcessor = new SpringBeansSymbolsProcessor(javaProject);
-		symbols.addAll(springProcessor.getSymbols());
-		
+
+		List<ISymbol> springSymbols = SpringBeansSymbolsProcessor.create(javaProject).getSymbols();
+		symbols.addAll(springSymbols);
+
 		RegexSymbolsProcessor regexSymbolsProcessor = new RegexSymbolsProcessor(javaProject);
 		symbols.addAll(regexSymbolsProcessor.getSymbols());
-		
+
 		return symbols.toArray(new ISymbol[symbols.size()]);
 	}
-
 
 	/**
 	 * @see org.eclipse.jst.jsf.context.symbol.source.ISymbolSourceProvider#getSymbols(java.lang.String,
