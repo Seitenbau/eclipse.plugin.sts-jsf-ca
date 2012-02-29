@@ -1,18 +1,28 @@
 # JSF Content Assist for spring beans in eclipse
 
+This eclipse plugin provides a simple spring and JSF tooling integration. 
+The plugin findes by using STS/SpringIDE all sping beans of a project and shows this beans
+in the eclipse content assist of a JSF view e.g. in a XHTML file.  
+
+The plugin only works in JSF eclipse web projects.
+
+## Requirements
+
+ - STS 2.8.1
+ - or Eclipse Indigo 3.7.2 jee with installed spring ide
+
 ## Installation
 
-prerequisites:
-- sts eclipse 2.8.1 oder eclipse 3.7.2 jee with installed spring ide
+ 1. download the plugin and copy it to your eclipse's dropins folder 
+    (from https://github.com/edmund-wagner/springsts-jsf-ca/downloads)
+ 2. restart eclipse (safety first ;)
+ 3. add your spring contexts to the project (project/properties/spring/beans support -> config files
 
+A update site for the plugin is comming soon... 
 
-1. download the plugin and copy it to your eclipse's dropins folder 
-2. restart eclipse (safety first ;)
-3. add your spring contexts to the project (project/properties/spring/beans support -> config files
+## Additional Configuration
 
-## Additional Config
-
-you can specify additional beans (without @component etc..) to be suggested in the jsfca pref page (window/preferences/jsfca)
+You can specify additional beans (without @component etc..) to be suggested in the jsfca pref page (window/preferences/jsfca)
 
 define the base package to be scanned and a java regex for the class name.
 
