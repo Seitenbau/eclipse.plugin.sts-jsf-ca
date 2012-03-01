@@ -61,15 +61,7 @@ public class RegexSymbolsProcessor {
 									&& classPattern.matcher(
 											primaryType.getElementName())
 											.matches()) {
-								final IBeanInstanceSymbol bean = SymbolFactory.eINSTANCE
-										.createIBeanInstanceSymbol();
-								bean.setName(getBeanName(primaryType
-										.getElementName()));
-								IJavaTypeDescriptor2 beanJavaTypeDescriptor = SymbolFactory.eINSTANCE
-										.createIJavaTypeDescriptor2();
-								beanJavaTypeDescriptor.setType(primaryType);
-								bean.setJavaTypeDescriptor(beanJavaTypeDescriptor);
-								symbols.add(bean);
+								createSymbol(primaryType);
 							}
 						}
 					}
@@ -79,6 +71,18 @@ public class RegexSymbolsProcessor {
 		} catch (JavaModelException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void createSymbol(IType primaryType) {
+		final IBeanInstanceSymbol bean = SymbolFactory.eINSTANCE
+				.createIBeanInstanceSymbol();
+		bean.setName(getBeanName(primaryType
+				.getElementName()));
+		IJavaTypeDescriptor2 beanJavaTypeDescriptor = SymbolFactory.eINSTANCE
+				.createIJavaTypeDescriptor2();
+		beanJavaTypeDescriptor.setType(primaryType);
+		bean.setJavaTypeDescriptor(beanJavaTypeDescriptor);
+		symbols.add(bean);
 	}
 
 	private String getBeanName(String simpleClassName) {
