@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="jsf.ca.pring">
+      JSF content assist Spring integration, provides the Spring beans in the content assist of the JSF Eclips tooling.
+   </description>
+   <feature url="features/jsfca.feature_1.0.0.qualifier.jar" id="jsfca.feature" version="1.0.0.qualifier">
+      <category name="Spring JSF Content Assist"/>
+   </feature>
+   <category-def name="Spring JSF Content Assist" label="Spring JSF Content Assist">
+      <description>
+         JSF content assist Spring integration.
+      </description>
+   </category-def>
+</site>
