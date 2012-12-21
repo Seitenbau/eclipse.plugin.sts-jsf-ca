@@ -1,5 +1,7 @@
 # JSF Content Assist for spring beans in eclipse
 
+[![Build Status](https://buildhive.cloudbees.com/job/Seitenbau/job/eclipse.plugin.sts-jsf-ca/badge/icon)](https://buildhive.cloudbees.com/job/Seitenbau/job/eclipse.plugin.sts-jsf-ca/)
+
 This eclipse plugin provides a simple spring and JSF tooling integration. 
 The plugin findes by using STS/SpringIDE all sping beans of a project and shows this beans
 in the eclipse content assist of a JSF view e.g. in a XHTML file.  
