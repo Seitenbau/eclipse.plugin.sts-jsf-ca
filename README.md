@@ -15,12 +15,10 @@ The plugin only works in JSF eclipse web projects.
 
 ## Installation
 
- 1. Add the following Eclipse Update Site:
+ 1. Add the following Eclipse Update Site and install the Plugin:
     http://seitenbau.github.com/eclipse.plugin.sts-jsf-ca/1.0.0/
  2. restart eclipse (safety first ;)
  3. add your spring contexts to the project (project/properties/spring/beans support -> config files
-
-A update site for the plugin is comming soon... 
 
 ## Additional Configuration
 
