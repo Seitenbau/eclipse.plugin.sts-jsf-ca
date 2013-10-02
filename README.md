@@ -15,8 +15,8 @@ The plugin only works in JSF eclipse web projects.
 
 ## Installation
 
- 1. download the plugin and copy it to your eclipse's dropins folder 
-    (from https://github.com/edmund-wagner/springsts-jsf-ca/downloads)
+ 1. Add the following Eclipse Update Site:
+    http://seitenbau.github.com/eclipse.plugin.sts-jsf-ca/1.0.0/
  2. restart eclipse (safety first ;)
  3. add your spring contexts to the project (project/properties/spring/beans support -> config files
 
